@@ -1,0 +1,11 @@
+# github.com/h2non/bimg v1.1.2
+## explicit
+github.com/h2non/bimg
+# github.com/pelletier/go-toml v1.8.0
+## explicit
+github.com/pelletier/go-toml
+# github.com/sirupsen/logrus v0.8.7
+## explicit
+github.com/sirupsen/logrus
+# github.com/stretchr/testify v1.6.1
+## explicit
