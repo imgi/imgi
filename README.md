@@ -39,3 +39,8 @@ imgi=operation0:option0_value0,option1_value1|operation1:option0_value0
 | w | int | `[1, 10000]` | output image width |
 | h | int | `[1, 10000]` | output image height |
 
+
+## License
+
+MIT - Copyright (c) 2020 Chen Guohui
+
