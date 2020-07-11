@@ -51,6 +51,7 @@ func exitWithError(err error) {
 func parseCmdArgs() (*options, error) {
 	config := flag.String("c", "imgi.conf", "Configuration file")
 	help := flag.Bool("h", false, "Show help")
+	version := flag.Bool("v", false, "Show version")
 	flag.Parse()
 
 	opts := &options{
@@ -59,6 +60,10 @@ func parseCmdArgs() (*options, error) {
 
 	if *help {
 		flag.Usage()
+		os.Exit(2)
+	}
+	if *version {
+		fmt.Println("imgi version ", imgi.Version)
 		os.Exit(2)
 	}
 	return opts, nil
