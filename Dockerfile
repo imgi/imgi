@@ -19,11 +19,11 @@ RUN apt update && apt install --no-install-recommends -y \
     libcfitsio-dev libwebp-dev
 
 RUN curl -OL https://github.com/libvips/libvips/releases/download/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.gz \
-    && tar -zxvf vips-${VIPS_VERSION}.tar.gz && cd vips-${VIPS_VERSION} \
+    && tar -zxf vips-${VIPS_VERSION}.tar.gz && cd vips-${VIPS_VERSION} \
     && ./configure --disable-gtk-doc --disable-gtk-doc-html --disable-gtk-doc-pdf \
     && make && make install && ldconfig
 
 WORKDIR ${GOPATH}/src/github.com/imgi/imgi
 COPY . .
 
-RUN go build cmd/imgi/main.go -o imgi
+RUN go build -o imgi cmd/imgi/main.go
