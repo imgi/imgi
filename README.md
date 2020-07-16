@@ -1,5 +1,7 @@
 # imgi
 
+[![Travis Build Status](https://travis-ci.com/imgi/imgi.svg?branch=master)](https://travis-ci.com/imgi/imgi)
+
 **imgi** is an image procressing service.
 
 ## Installation
