@@ -50,6 +50,7 @@ func createHandler(config Config) http.Handler {
 		ops, err := parseOperations(query)
 		if err != nil {
 			replyError(w, r, err, http.StatusBadRequest)
+			return
 		}
 		if len(ops) == 0 {
 			replyImage(w, r, img)
@@ -59,6 +60,7 @@ func createHandler(config Config) http.Handler {
 			img, err = op.Action.Act(img, op.Options)
 			if err != nil {
 				replyError(w, r, err, http.StatusInternalServerError)
+				return
 			}
 		}
 		replyImage(w, r, img)
