@@ -1,6 +1,10 @@
 package imgi
 
-import "github.com/h2non/bimg"
+import (
+	"fmt"
+
+	"github.com/h2non/bimg"
+)
 
 type Image struct {
 	Buf  []byte
@@ -17,6 +21,8 @@ type Options struct {
 	Width  int
 	Height int
 	Mode   Mode
+	X      int
+	Y      int
 }
 
 type Mode int
@@ -35,14 +41,10 @@ func (a Action) Act(img Image, opts Options) (Image, error) {
 
 var actions = map[string]Action{
 	"resize": Resize,
+	"crop":   Crop,
 }
 
 func Resize(img Image, opts Options) (Image, error) {
-	// meta, err := bimg.Metadata(img.Buf)
-	// if err != nil {
-	// 	return img, err
-	// }
-
 	o := bimg.Options{
 		Width:   opts.Width,
 		Height:  opts.Height,
@@ -60,6 +62,40 @@ func Resize(img Image, opts Options) (Image, error) {
 	}
 
 	buf, err := bimg.Resize(img.Buf, o)
+	if err != nil {
+		return img, err
+	}
+	return Image{buf, img.Mime}, nil
+}
+
+func Crop(img Image, opts Options) (Image, error) {
+	meta, err := bimg.Metadata(img.Buf)
+	if err != nil {
+		return img, err
+	}
+	w := meta.Size.Width
+	h := meta.Size.Height
+	if opts.X+opts.Width > w {
+		return img, fmt.Errorf("crop out of image width")
+	}
+	if opts.Y+opts.Height > h {
+		return img, fmt.Errorf("crop out of image height")
+	}
+	if opts.Width == 0 {
+		opts.Width = w - opts.X
+	}
+	if opts.Height == 0 {
+		opts.Height = h - opts.Y
+	}
+
+	o := bimg.Options{
+		AreaWidth:  opts.Width,
+		AreaHeight: opts.Height,
+		Top:        opts.Y,
+		Left:       opts.X,
+	}
+	buf, err := bimg.Resize(img.Buf, o)
+
 	if err != nil {
 		return img, err
 	}

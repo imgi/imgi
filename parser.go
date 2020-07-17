@@ -87,6 +87,8 @@ var parsers = map[string]parser{
 	"m": parseMode,
 	"w": parseWidth,
 	"h": parseHeight,
+	"x": parseX,
+	"y": parseY,
 }
 
 var modes = map[string]Mode{
@@ -121,5 +123,15 @@ func parseWidth(opts *Options, val string) (err error) {
 
 func parseHeight(opts *Options, val string) (err error) {
 	opts.Height, err = parseIntInRange(val, 1, maxHeight)
+	return err
+}
+
+func parseX(opts *Options, val string) (err error) {
+	opts.X, err = parseIntInRange(val, 0, 10000)
+	return err
+}
+
+func parseY(opts *Options, val string) (err error) {
+	opts.Y, err = parseIntInRange(val, 0, 10000)
 	return err
 }
