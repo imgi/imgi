@@ -76,6 +76,11 @@ func normalizeOptions(raw string) map[string]string {
 	return opts
 }
 
+const (
+	maxWidth  = 10000
+	maxHeight = 10000
+)
+
 type parser func(*Options, string) error
 
 var parsers = map[string]parser{
@@ -98,12 +103,23 @@ func parseMode(opts *Options, val string) (err error) {
 	return fmt.Errorf(`fail parse mode with value "%s"`, val)
 }
 
+func parseIntInRange(val string, min, max int) (int, error) {
+	v, err := strconv.Atoi(val)
+	if err != nil {
+		return 0, err
+	}
+	if v < min || v > max {
+		return 0, fmt.Errorf("value must in [%d, %d]", min, max)
+	}
+	return v, nil
+}
+
 func parseWidth(opts *Options, val string) (err error) {
-	opts.Width, err = strconv.Atoi(val)
+	opts.Width, err = parseIntInRange(val, 1, maxWidth)
 	return err
 }
 
 func parseHeight(opts *Options, val string) (err error) {
-	opts.Height, err = strconv.Atoi(val)
+	opts.Height, err = parseIntInRange(val, 1, maxHeight)
 	return err
 }
