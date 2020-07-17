@@ -42,6 +42,15 @@ imgi=operation0:option0_value0,option1_value1|operation1:option0_value0
 | h | int | `[1, 10000]` | output image height |
 
 
+### Crop `crop`
+
+| Option | Type | Value | Description |
+| ------ | ---- | ----- | ----------- |
+| w | int | `[1, width - x]` | output image width |
+| h | int | `[1, height - y]`| output image height |
+| x | int | `[0, width]` | x-axis along image width |
+| y | int | `[0, height]` | y-axis along image height |
+
 ## License
 
 MIT - Copyright (c) 2020 Chen Guohui
