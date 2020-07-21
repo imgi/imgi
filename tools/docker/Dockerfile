@@ -5,7 +5,7 @@ FROM debian:buster-slim
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Sources mirror
-COPY sources.list /etc/apt/
+# COPY sources.list /etc/apt/
 
 # Missing dependencies: PDFium ImageMagick libniftiio
 RUN apt update && apt install --no-install-recommends -y \
