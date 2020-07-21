@@ -3,6 +3,8 @@ language: go
 services:
   - docker
 
+script:
+  - make
 
 jobs:
   include:
