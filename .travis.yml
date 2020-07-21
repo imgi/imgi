@@ -4,7 +4,7 @@ services:
   - docker
 
 
-jobs
+jobs:
   include:
     - stage: Push docker image
       if: tag IS present
