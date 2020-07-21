@@ -3,11 +3,12 @@ language: go
 services:
   - docker
 
-script:
-  - make
 
 jobs:
   include:
+    - stage: Build
+      script:
+        - make
     - stage: Push docker image
       if: tag IS present
       script:
