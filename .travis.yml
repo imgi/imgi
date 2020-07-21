@@ -3,3 +3,11 @@ language: go
 services:
   - docker
 
+
+jobs
+  include:
+    - stage: Push docker image
+      if: tag IS present
+      script:
+        - docker login -u $DOCKER_USER -p $DOCKER_TOKEN
+        - make docker.push
