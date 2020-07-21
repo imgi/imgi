@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG VIPS_VERSION=8.9.2
 
 # Sources mirror
-# COPY sources.list /etc/apt/
+COPY sources.list /etc/apt/
 
 # Missing dependencies: PDFium ImageMagick libniftiio
 RUN apt update && apt install --no-install-recommends -y \
@@ -49,3 +49,4 @@ WORKDIR ${GOPATH}/src/github.com/imgi/imgi
 COPY . .
 
 RUN go build -o imgi cmd/imgi/main.go
+
