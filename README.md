@@ -6,11 +6,29 @@
 
 ## Installation
 
+You can install imgi from [docker](#docker) or [build from source](#build-from-source).
+
+### Build from source
+
+#### Prerequisite
+
+* GO 1.14+
+* libvips 8.9+
+
+#### Build and install
+
 ```
 go get -u github.com/imgi/imgi/cmd/imgi
 ```
 
 ## Usage
+
+### Docker
+
+Start imgi container with default configuration:
+```
+docker run -d -p 6969:6969 -v /path/to/images:/images imgi/imgi
+```
 
 ### Example
 
