@@ -16,4 +16,7 @@ docker.push: docker
 	docker push imgi/imgi:$(VERSION)
 	docker push imgi/imgi:latest
 
-.PHONY: docker
+docker.run:
+	docker run --rm -p 6969:6969 -v $(shell pwd)/testdata:/images imgi/imgi
+
+.PHONY: docker.run
