@@ -14,5 +14,6 @@ docker.imgi: tools/docker/Dockerfile docker.dev
 docker.push: docker
 	docker tag imgi/imgi imgi/imgi:$(VERSION)
 	docker push imgi/imgi:$(VERSION)
+	docker push imgi/imgi:latest
 
 .PHONY: docker
